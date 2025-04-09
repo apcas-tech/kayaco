@@ -43,11 +43,13 @@
 <div class=" items-center justify-center"></div>
 
 <!--arrow section-->
-<!-- <section class="relative sm:hidden md:hidden lg:block">
-	<div class="absolute bottom-0 right-[800px] items-center px-24">
-		<img src="/img/arrow.png" alt="arrow" class="h-36 w-32" />
+<section class="-mt-24 hidden lg:block">
+	<div class="flex flex-col items-center">
+		<div>
+			<img src="/img/arrow.png" alt="arrow" class="h-36 w-32" />
+		</div>
+		<div>
+			<div class="mr-24 text-4xl">Our <span class="font-bold">Journey</span></div>
+		</div>
 	</div>
-	<div class="absolute -bottom-12 right-[800px] items-center px-24">
-		<div class="text-4xl">Our <span class="font-bold">Journey</span></div>
-	</div>
-</section> -->
+</section>

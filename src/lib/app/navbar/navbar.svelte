@@ -12,9 +12,10 @@
 </script>
 
 <nav class="border-b border-gray-200 bg-white">
-	<div class=" px-4 sm:px-6 lg:px-8">
-		<div class="flex h-16 justify-start">
-			<!-- Desktop menu -->
+	<div class=" px-4 sm:px-6 lg:px-24">
+		<div class="flex h-16 items-center justify-start gap-12">
+			<img src="/logo/logo.png" alt="logo" class="hidden h-8 w-24 lg:block" />
+
 			<div class="hidden items-center space-x-8 md:flex">
 				{#each links as link}
 					<a href={link.href} class="text-gray-600 transition-colors duration-300">

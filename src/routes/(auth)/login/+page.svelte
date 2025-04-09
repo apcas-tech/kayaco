@@ -6,13 +6,17 @@
 	import { loginSchema } from '$lib/zod-schema';
 	import { toast } from 'svelte-sonner';
 	import { Button } from '$lib/components/ui/button';
+	import { writable } from 'svelte/store';
+	import { Eye, EyeOff } from '@lucide/svelte';
+
+	const showPassword = writable(false);
 
 	const form = superForm(defaults(zod(loginSchema)), {
 		validators: zodClient(loginSchema),
 		resetForm: false,
 		onResult({ result }) {
 			if (result.type === 'failure') {
-				toast.error('Wrong username or password.');
+				toast.error('Wrong email or password.');
 			} else if (result.type === 'success') {
 				toast.success('Login successful!');
 			}
@@ -32,10 +36,10 @@
 						<div class="text-muted-foreground">Enter your account details</div>
 					</div>
 					<div class="space-y-4">
-						<Form.Field {form} name="username">
+						<Form.Field {form} name="email">
 							<Form.Control>
 								{#snippet children({ props })}
-									<Input {...props} bind:value={$formData.username} placeholder="Username" />
+									<Input {...props} bind:value={$formData.email} placeholder="Email" />
 								{/snippet}
 							</Form.Control>
 							<Form.FieldErrors />
@@ -44,10 +48,30 @@
 						<Form.Field {form} name="password">
 							<Form.Control>
 								{#snippet children({ props })}
-									<Input {...props} bind:value={$formData.password} placeholder="Password" />
+								<div class="relative space-y-1.5">
+									<div class="flex items-center">
+										<Input {...props}
+											class="bg-white/10 text-black placeholder-white/70 py-6 px-4 rounded-md transition duration-300 w-full pr-10"
+											placeholder="Password"
+											type={$showPassword ? "text" : "password"}
+											bind:value={$formData.password}
+										/>
+										<button
+											type="button"
+											class="absolute right-2 z-10 text-gray-300 hover:text-white"
+											on:click={() => showPassword.set(!$showPassword)}>
+											{#if $showPassword}
+												<Eye size={20} class="text-black" />
+											{:else}
+												<EyeOff size={20} class="text-black" />
+											{/if}
+										</button>
+									</div>
+									
+									<Form.FieldErrors />
+								</div>
 								{/snippet}
 							</Form.Control>
-							<Form.FieldErrors />
 						</Form.Field>
 					</div>
 					<Form.Button class="w-full">Login</Form.Button>

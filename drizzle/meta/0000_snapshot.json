@@ -1,5 +1,5 @@
 {
-  "id": "1ac5d052-b8d5-4962-9cf8-20b18975470e",
+  "id": "1fc825db-1dd7-45e5-9b96-59cb2142a539",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -687,7 +687,7 @@
         },
         "access": {
           "name": "access",
-          "type": "role",
+          "type": "access",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
@@ -728,12 +728,14 @@
     }
   },
   "enums": {
-    "public.role": {
-      "name": "role",
+    "public.access": {
+      "name": "access",
       "schema": "public",
       "values": [
-        "user",
-        "admin"
+        "voice_commands",
+        "text_to_speech",
+        "adjustable_text_size",
+        "customizable_contrast_mode"
       ]
     },
     "public.rating": {
@@ -756,6 +758,14 @@
         "Completed",
         "Delivered",
         "Cancelled"
+      ]
+    },
+    "public.role": {
+      "name": "role",
+      "schema": "public",
+      "values": [
+        "user",
+        "admin"
       ]
     }
   },

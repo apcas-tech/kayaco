@@ -21,20 +21,20 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		const { username, password } = form.data;
+		const { email, password } = form.data;
 
 		const existingUser = await db.query.user.findFirst({
-			where: (user, { eq }) => eq(user.username, username),
+			where: (user, { eq }) => eq(user.email, email),
 			columns: {
 				id: true,
-				username: true,
+				email: true,
 				hashedPassword: true,
 				role: true
 			}
 		});
 
 		if (!existingUser) {
-			return setError(form, 'username', 'email not found');
+			return setError(form, 'email', 'email not found');
 		}
 
 		const validPassword = await verify(existingUser.hashedPassword, password);

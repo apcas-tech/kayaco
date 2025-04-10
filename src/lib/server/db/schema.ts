@@ -10,7 +10,7 @@ export const orderStatus = pgEnum('order_status', orderStatuses);
 
 const access = ['voice_commands', 'text_to_speech','adjustable_text_size', 'customizable_contrast_mode'] as const;
 export type access = (typeof access)[number];
-export const Access = pgEnum('role', access);
+export const Access = pgEnum('access', access);
 
 const rating = ['1', '2', '3','4','5'] as const;
 export type rating= (typeof rating)[number];

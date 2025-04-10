@@ -1,5 +1,5 @@
 DO $$ BEGIN
- CREATE TYPE "public"."role" AS ENUM('user', 'admin');
+ CREATE TYPE "public"."access" AS ENUM('voice_commands', 'text_to_speech', 'adjustable_text_size', 'customizable_contrast_mode');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -12,6 +12,12 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  CREATE TYPE "public"."order_status" AS ENUM('Pending', 'Processing', 'Completed', 'Delivered', 'Cancelled');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ CREATE TYPE "public"."role" AS ENUM('user', 'admin');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -107,7 +113,7 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"l_name" text NOT NULL,
 	"email" text NOT NULL,
 	"phone" text NOT NULL,
-	"access" "role" NOT NULL,
+	"access" "access" NOT NULL,
 	"hashed_password" text NOT NULL,
 	"role" "role" NOT NULL,
 	CONSTRAINT "user_email_unique" UNIQUE("email"),

@@ -13,7 +13,6 @@ export const load: PageServerLoad = async () => {
 		loginForm: await superValidate(zod(registerSchema))
 	};
 };
-
 export const actions: Actions = {
 	register: async (event) => {
 		const form = await superValidate(event, zod(registerSchema));
@@ -25,9 +24,13 @@ export const actions: Actions = {
 			});
 		}
 
-		const { username, password } = form.data;
+		const { f_name, l_name, email, PhoneNo, password, confirmPassword } = form.data;
 
 		const userId = crypto.randomUUID();
+
+		if (password !== confirmPassword) {
+			return setError(form, 'confirmPassword', 'Passwords do not match');
+		}
 
 		const hashedPassword = await hash(password, {
 			memoryCost: 19456,
@@ -39,17 +42,21 @@ export const actions: Actions = {
 		try {
 			await db.insert(user).values({
 				id: userId,
-				username,
+				f_name,
+				l_name,
+				email,
+				phone: PhoneNo,
+				access: 'voice_commands',
 				hashedPassword,
 				role: 'user'
 			});
 		} catch (e) {
 			if (e instanceof postgres.PostgresError) {
 				if (e.constraint_name === 'auth_user_email_unique') {
-					return setError(form, 'username', 'Email already taken');
+					return setError(form, 'email', 'Email already taken');
 				}
 			}
-
+			console.error(e);
 			return setError(form, '', 'Unable to create account');
 		}
 	}

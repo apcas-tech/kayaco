@@ -6,13 +6,21 @@
 	import { registerSchema } from '$lib/zod-schema';
 	import { toast } from 'svelte-sonner';
 	import { Button } from '$lib/components/ui/button';
+	import { writable } from 'svelte/store';
+	import { Eye, EyeOff } from '@lucide/svelte';
+	import * as Select from "$lib/components/ui/select/index.js";
+
+	const showConfirmPassword = writable(false);
+	const showPassword = writable(false);
+	
 
 	const form = superForm(defaults(zod(registerSchema)), {
 		validators: zodClient(registerSchema),
 		resetForm: false,
 		onResult({ result }) {
 			if (result.type === 'failure') {
-				toast.error('Wrong username or password.');
+				toast.error('Registration Unsuccessful.');
+				console.log(result);
 			} else if (result.type === 'success') {
 				toast.success('Register successfully!');
 			}
@@ -31,25 +39,108 @@
 						<div class="text-4xl font-bold">Register</div>
 						<div class="text-muted-foreground">Enter your account details</div>
 					</div>
-					<div class="space-y-4">
-						<Form.Field {form} name="username">
-							<Form.Control>
-								{#snippet children({ props })}
-									<Input {...props} bind:value={$formData.username} placeholder="Username" />
-								{/snippet}
-							</Form.Control>
-							<Form.FieldErrors />
-						</Form.Field>
+					<Form.Field {form} name="f_name">
+						<Form.Control>
+							{#snippet children({ props })}
+								<Input {...props} bind:value={$formData.f_name} placeholder="First Name" />
+							{/snippet}
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
+			
+					<Form.Field {form} name="l_name">
+						<Form.Control>
+							{#snippet children({ props })}
+								<Input {...props} bind:value={$formData.l_name} placeholder="Last Name" />
+							{/snippet}
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
+			
+					<Form.Field {form} name="email">
+						<Form.Control>
+							{#snippet children({ props })}
+								<Input {...props} bind:value={$formData.email} placeholder="Email" />
+							{/snippet}
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
+			
+					<Form.Field {form} name="PhoneNo">
+						<Form.Control>
+							{#snippet children({ props })}
+								<Input {...props} bind:value={$formData.PhoneNo} placeholder="Phone Number" />
+							{/snippet}
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
 
-						<Form.Field {form} name="password">
-							<Form.Control>
-								{#snippet children({ props })}
-									<Input {...props} bind:value={$formData.password} placeholder="Password" />
-								{/snippet}
-							</Form.Control>
-							<Form.FieldErrors />
-						</Form.Field>
-					</div>
+					<Select.Root type="single">
+						<Select.Trigger class="w-full text-black">Accessibility Feature</Select.Trigger>
+						<Select.Content>
+						  <Select.Item value="light">Light</Select.Item>
+						  <Select.Item value="dark">Dark</Select.Item>
+						  <Select.Item value="system">System</Select.Item>
+						</Select.Content>
+					</Select.Root>
+
+					<Form.Field {form} name="password">
+						<Form.Control>
+							{#snippet children({ props })}
+							<div class="relative space-y-1.5">
+								<div class="flex items-center">
+									<Input {...props}
+										class="bg-white/10 text-black placeholder-white/70 py-6 px-4 rounded-md transition duration-300 w-full pr-10"
+										placeholder="Password"
+										type={$showPassword ? "text" : "password"}
+										bind:value={$formData.password}
+									/>
+									<button
+										type="button"
+										class="absolute right-2 z-10 text-gray-300 hover:text-white"
+										on:click={() => showPassword.set(!$showPassword)}>
+										{#if $showPassword}
+											<Eye size={20} class="text-black" />
+										{:else}
+											<EyeOff size={20} class="text-black" />
+										{/if}
+									</button>
+								</div>
+								
+								<Form.FieldErrors />
+							</div>
+							{/snippet}
+						</Form.Control>
+					</Form.Field>
+			
+					<Form.Field {form} name="confirmPassword">
+						<Form.Control>
+							{#snippet children({ props })}
+							<div class="relative space-y-1.5">
+								<div class="flex items-center">
+									<Input {...props}
+										class="bg-white/10 text-black placeholder-white/70 py-6 px-4 rounded-md transition duration-300 w-full pr-10"
+										placeholder="Confirm Password"
+										type={$showConfirmPassword ? "text" : "password"}
+										bind:value={$formData.confirmPassword}
+									/>
+									<button
+										type="button"
+										class="absolute right-2 z-10 text-gray-300 hover:text-white"
+										on:click={() => showConfirmPassword.set(!$showConfirmPassword)}>
+										{#if $showConfirmPassword}
+											<Eye size={20} class="text-black" />
+										{:else}
+											<EyeOff size={20} class="text-black" />
+										{/if}
+									</button>
+								</div>
+								<Form.FieldErrors />
+							</div>
+							{/snippet}
+						</Form.Control>
+					</Form.Field>
+			
 					<Form.Button class="w-full">Register</Form.Button>
 					<Button variant="outline" class="w-full" href="/login">Login</Button>
 				</div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	let isOpen = $state(false);
 
 	const toggleMenu = () => {
@@ -7,23 +8,36 @@
 
 	const links = [
 		{ name: 'Home', href: '/landingpage' },
-		{ name: 'Features', href: '/features' }
+		{ name: 'Features', href: '/features' },
+		{ name: 'Products', href: '/products' },
+		{ name: 'Courses', href: '/courses' }
 	];
 </script>
 
 <nav class="border-b border-gray-200 bg-white">
-	<div class=" px-4 sm:px-6 lg:px-24">
-		<div class="flex h-16 items-center justify-start gap-12">
-			<img src="/logo/logo.png" alt="logo" class="hidden h-8 w-24 lg:block" />
+	<div class="px-4 sm:px-6 lg:px-24">
+		<div class="flex h-16 items-center justify-between">
+			<div class="flex items-center gap-12">
+				<img src="/logo/logo.png" alt="logo" class="hidden h-8 w-24 lg:block" />
 
-			<div class="hidden items-center space-x-8 md:flex">
-				{#each links as link}
-					<a href={link.href} class="text-gray-600 transition-colors duration-300">
-						{link.name}
-					</a>
-				{/each}
+				<div class="hidden items-center space-x-8 md:flex">
+					{#each links as link}
+						<a
+							href={link.href}
+							class="text-muted-foreground transition-colors duration-300 hover:text-blue-500"
+						>
+							{link.name}
+						</a>
+					{/each}
+				</div>
 			</div>
 
+			<div class="hidden items-center space-x-2 md:flex">
+				<Button href="/login" variant="outline">Login</Button>
+				<Button href="/register" class="bg-blue-500 hover:bg-blue-400">Register</Button>
+			</div>
+
+			<!-- Mobile Menu Button -->
 			<div class="flex items-center md:hidden">
 				<button onclick={toggleMenu} class="text-gray-600 hover:text-gray-800 focus:outline-none">
 					{#if isOpen}
@@ -48,20 +62,28 @@
 				</button>
 			</div>
 		</div>
-	</div>
 
-	{#if isOpen}
-		<div class="md:hidden">
-			<div class="space-y-1 px-2 pb-3 pt-2">
+		<!-- Mobile Menu -->
+		{#if isOpen}
+			<div class="mt-2 space-y-2 md:hidden">
 				{#each links as link}
 					<a
 						href={link.href}
-						class="block rounded-md px-3 py-2 text-base font-medium text-gray-600 transition hover:bg-gray-50"
+						class="block text-gray-600 transition-colors duration-300 hover:text-gray-800"
 					>
 						{link.name}
 					</a>
 				{/each}
+				<a
+					href="/login"
+					class="block text-gray-600 transition-colors duration-300 hover:text-gray-800">Login</a
+				>
+				<a
+					href="/register"
+					class="block pb-4 text-gray-600 transition-colors duration-300 hover:text-gray-800"
+					>Register</a
+				>
 			</div>
-		</div>
-	{/if}
+		{/if}
+	</div>
 </nav>

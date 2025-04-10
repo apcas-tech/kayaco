@@ -26,7 +26,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<div class="container relative h-screen flex-col items-center justify-center">
+<div class="container relative mt-12 flex-col items-center justify-center lg:mt-24">
 	<div class="flex h-full w-full flex-col items-center justify-center">
 		<div class="mx-auto flex w-full max-w-md flex-col justify-center space-y-6">
 			<form method="POST" use:enhance action="?/login">
@@ -48,28 +48,30 @@
 						<Form.Field {form} name="password">
 							<Form.Control>
 								{#snippet children({ props })}
-								<div class="relative space-y-1.5">
-									<div class="flex items-center">
-										<Input {...props}
-											class="bg-white/10 text-black placeholder-white/70 py-6 px-4 rounded-md transition duration-300 w-full pr-10"
-											placeholder="Password"
-											type={$showPassword ? "text" : "password"}
-											bind:value={$formData.password}
-										/>
-										<button
-											type="button"
-											class="absolute right-2 z-10 text-gray-300 hover:text-white"
-											on:click={() => showPassword.set(!$showPassword)}>
-											{#if $showPassword}
-												<Eye size={20} class="text-black" />
-											{:else}
-												<EyeOff size={20} class="text-black" />
-											{/if}
-										</button>
+									<div class="relative space-y-1.5">
+										<div class="flex items-center">
+											<Input
+												{...props}
+												class="w-full rounded-md bg-white/10 px-4 py-6 pr-10 text-black placeholder-white/70 transition duration-300"
+												placeholder="Password"
+												type={$showPassword ? 'text' : 'password'}
+												bind:value={$formData.password}
+											/>
+											<button
+												type="button"
+												class="absolute right-2 z-10 text-gray-300 hover:text-white"
+												on:click={() => showPassword.set(!$showPassword)}
+											>
+												{#if $showPassword}
+													<Eye size={20} class="text-black" />
+												{:else}
+													<EyeOff size={20} class="text-black" />
+												{/if}
+											</button>
+										</div>
+
+										<Form.FieldErrors />
 									</div>
-									
-									<Form.FieldErrors />
-								</div>
 								{/snippet}
 							</Form.Control>
 						</Form.Field>

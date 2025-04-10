@@ -151,7 +151,7 @@
 				<button
 					onclick={handlePrev}
 					aria-label="Previous"
-					class="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+					class="group/button flex h-7 w-7 items-center justify-center rounded-full bg-blue-500"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400"
+						class="h-5 w-5 text-white transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400"
 					>
 						<path d="m12 19-7-7 7-7" />
 						<path d="M19 12H5" />
@@ -173,7 +173,7 @@
 				<button
 					onclick={handleNext}
 					aria-label="Next"
-					class="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+					class="group/button flex h-7 w-7 items-center justify-center rounded-full bg-blue-500"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +185,7 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400"
+						class="h-5 w-5 text-white transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400"
 					>
 						<path d="M5 12h14" />
 						<path d="m12 5 7 7-7 7" />

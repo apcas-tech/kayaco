@@ -8,11 +8,10 @@
 	import { Button } from '$lib/components/ui/button';
 	import { writable } from 'svelte/store';
 	import { Eye, EyeOff } from '@lucide/svelte';
-	import * as Select from "$lib/components/ui/select/index.js";
+	import * as Select from '$lib/components/ui/select/index.js';
 
 	const showConfirmPassword = writable(false);
 	const showPassword = writable(false);
-	
 
 	const form = superForm(defaults(zod(registerSchema)), {
 		validators: zodClient(registerSchema),
@@ -30,7 +29,7 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<div class="container relative h-screen flex-col items-center justify-center">
+<div class="container relative mt-12 flex-col items-center justify-center lg:mt-24">
 	<div class="flex h-full w-full flex-col items-center justify-center">
 		<div class="mx-auto flex w-full max-w-md flex-col justify-center space-y-6">
 			<form method="POST" use:enhance action="?/register">
@@ -47,7 +46,7 @@
 						</Form.Control>
 						<Form.FieldErrors />
 					</Form.Field>
-			
+
 					<Form.Field {form} name="l_name">
 						<Form.Control>
 							{#snippet children({ props })}
@@ -56,7 +55,7 @@
 						</Form.Control>
 						<Form.FieldErrors />
 					</Form.Field>
-			
+
 					<Form.Field {form} name="email">
 						<Form.Control>
 							{#snippet children({ props })}
@@ -65,7 +64,7 @@
 						</Form.Control>
 						<Form.FieldErrors />
 					</Form.Field>
-			
+
 					<Form.Field {form} name="PhoneNo">
 						<Form.Control>
 							{#snippet children({ props })}
@@ -78,69 +77,73 @@
 					<Select.Root type="single">
 						<Select.Trigger class="w-full text-black">Accessibility Feature</Select.Trigger>
 						<Select.Content>
-						  <Select.Item value="light">Light</Select.Item>
-						  <Select.Item value="dark">Dark</Select.Item>
-						  <Select.Item value="system">System</Select.Item>
+							<Select.Item value="light">Light</Select.Item>
+							<Select.Item value="dark">Dark</Select.Item>
+							<Select.Item value="system">System</Select.Item>
 						</Select.Content>
 					</Select.Root>
 
 					<Form.Field {form} name="password">
 						<Form.Control>
 							{#snippet children({ props })}
-							<div class="relative space-y-1.5">
-								<div class="flex items-center">
-									<Input {...props}
-										class="bg-white/10 text-black placeholder-white/70 py-6 px-4 rounded-md transition duration-300 w-full pr-10"
-										placeholder="Password"
-										type={$showPassword ? "text" : "password"}
-										bind:value={$formData.password}
-									/>
-									<button
-										type="button"
-										class="absolute right-2 z-10 text-gray-300 hover:text-white"
-										on:click={() => showPassword.set(!$showPassword)}>
-										{#if $showPassword}
-											<Eye size={20} class="text-black" />
-										{:else}
-											<EyeOff size={20} class="text-black" />
-										{/if}
-									</button>
+								<div class="relative space-y-1.5">
+									<div class="flex items-center">
+										<Input
+											{...props}
+											class="w-full rounded-md bg-white/10 px-4 py-6 pr-10 text-black placeholder-white/70 transition duration-300"
+											placeholder="Password"
+											type={$showPassword ? 'text' : 'password'}
+											bind:value={$formData.password}
+										/>
+										<button
+											type="button"
+											class="absolute right-2 z-10 text-gray-300 hover:text-white"
+											on:click={() => showPassword.set(!$showPassword)}
+										>
+											{#if $showPassword}
+												<Eye size={20} class="text-black" />
+											{:else}
+												<EyeOff size={20} class="text-black" />
+											{/if}
+										</button>
+									</div>
+
+									<Form.FieldErrors />
 								</div>
-								
-								<Form.FieldErrors />
-							</div>
 							{/snippet}
 						</Form.Control>
 					</Form.Field>
-			
+
 					<Form.Field {form} name="confirmPassword">
 						<Form.Control>
 							{#snippet children({ props })}
-							<div class="relative space-y-1.5">
-								<div class="flex items-center">
-									<Input {...props}
-										class="bg-white/10 text-black placeholder-white/70 py-6 px-4 rounded-md transition duration-300 w-full pr-10"
-										placeholder="Confirm Password"
-										type={$showConfirmPassword ? "text" : "password"}
-										bind:value={$formData.confirmPassword}
-									/>
-									<button
-										type="button"
-										class="absolute right-2 z-10 text-gray-300 hover:text-white"
-										on:click={() => showConfirmPassword.set(!$showConfirmPassword)}>
-										{#if $showConfirmPassword}
-											<Eye size={20} class="text-black" />
-										{:else}
-											<EyeOff size={20} class="text-black" />
-										{/if}
-									</button>
+								<div class="relative space-y-1.5">
+									<div class="flex items-center">
+										<Input
+											{...props}
+											class="w-full rounded-md bg-white/10 px-4 py-6 pr-10 text-black placeholder-white/70 transition duration-300"
+											placeholder="Confirm Password"
+											type={$showConfirmPassword ? 'text' : 'password'}
+											bind:value={$formData.confirmPassword}
+										/>
+										<button
+											type="button"
+											class="absolute right-2 z-10 text-gray-300 hover:text-white"
+											on:click={() => showConfirmPassword.set(!$showConfirmPassword)}
+										>
+											{#if $showConfirmPassword}
+												<Eye size={20} class="text-black" />
+											{:else}
+												<EyeOff size={20} class="text-black" />
+											{/if}
+										</button>
+									</div>
+									<Form.FieldErrors />
 								</div>
-								<Form.FieldErrors />
-							</div>
 							{/snippet}
 						</Form.Control>
 					</Form.Field>
-			
+
 					<Form.Button class="w-full">Register</Form.Button>
 					<Button variant="outline" class="w-full" href="/login">Login</Button>
 				</div>

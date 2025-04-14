@@ -6,16 +6,16 @@
 
 	const testimonials = [
 		{
-			src: '/logo/cover.png'
+			src: '/img/satamakaba.jpg'
 		},
 		{
-			src: '/logo/cover.png'
+			src: '/img/founders.jpg'
 		},
 		{
-			src: '/logo/cover.png'
+			src: '/img/satamakaba1.jpg'
 		},
 		{
-			src: '/logo/cover.png'
+			src: '/img/satamakaba2.jpg'
 		},
 		{
 			src: '/logo/cover.png'

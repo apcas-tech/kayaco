@@ -76,7 +76,7 @@
 							</Form.Control>
 						</Form.Field>
 					</div>
-					<Form.Button class="w-full">Login</Form.Button>
+					<Form.Button class="w-full bg-blue-500 hover:bg-blue-400">Login</Form.Button>
 					<Button variant="outline" class="w-full" href="/register">Register</Button>
 				</div>
 			</form>

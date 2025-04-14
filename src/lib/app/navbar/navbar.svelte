@@ -24,7 +24,7 @@
 					{#each links as link}
 						<a
 							href={link.href}
-							class="text-muted-foreground transition-colors duration-300 hover:text-blue-500"
+							class="text-sm text-muted-foreground transition-colors duration-300 hover:text-blue-500"
 						>
 							{link.name}
 						</a>

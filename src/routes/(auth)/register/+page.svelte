@@ -144,7 +144,7 @@
 						</Form.Control>
 					</Form.Field>
 
-					<Form.Button class="w-full">Register</Form.Button>
+					<Form.Button class="w-full bg-blue-500 hover:bg-blue-400">Register</Form.Button>
 					<Button variant="outline" class="w-full" href="/login">Login</Button>
 				</div>
 			</form>

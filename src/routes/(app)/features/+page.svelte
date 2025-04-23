@@ -17,7 +17,7 @@
 			category: 'Shop',
 			description: 'Online shopping made inclusive. Purchase products crafted by PWDs.',
 			imageSrc: '/img/k-mart.jpg',
-			link: '#',
+			link: '/kmart',
 			previewColor: 'text-orange-700 hover:text-orange-900',
 			badgeColor: 'bg-orange-200 text-orange-600',
 			cardClass: 'bg-orange-100'

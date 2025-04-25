@@ -9,7 +9,7 @@
 	const links = [
 		{ name: 'Home', href: '/landingpage' },
 		{ name: 'Features', href: '/features' },
-		{ name: 'Products', href: '/products' },
+		{ name: 'Mart', href: '/kmart' },
 		{ name: 'Courses', href: '/courses' }
 	];
 </script>

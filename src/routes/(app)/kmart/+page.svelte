@@ -94,16 +94,8 @@
 				<label for="shipped-from" class="mb-1 block text-sm font-medium text-gray-700"
 					>Shipped From</label
 				>
-				<select id="shipped-from" class="w-full rounded-md border p-2 text-sm">
-					<option>All</option>
-					<option>Balanga</option>
-					<option>Pilar</option>
-					<option>Limay</option>
-					<option>Mariveles</option>
-				</select>
-			</div>
 
-			<!-- <DropdownMenu.Root>
+			<DropdownMenu.Root>
 				<DropdownMenu.Trigger
 					class={buttonVariants({
 						variant: 'outline',
@@ -119,21 +111,29 @@
 						<DropdownMenu.Item>Mariveles</DropdownMenu.Item>
 					</DropdownMenu.Group>
 				</DropdownMenu.Content>
-			</DropdownMenu.Root> -->
+			</DropdownMenu.Root> 
 
 			<div>
 				<label for="rating" class="mb-1 block text-sm font-medium text-gray-700"
 					>Minimum Rating</label
 				>
-				<select id="rating" class="w-full rounded-md border p-2 text-sm">
-					<option>All</option>
-					<option>⭐ 1 and up</option>
-					<option>⭐ 2 and up</option>
-					<option>⭐ 3 and up</option>
-					<option>⭐ 4 and up</option>
-					<option>⭐ 5 only</option>
-				</select>
-			</div>
+				<DropdownMenu.Root>
+					<DropdownMenu.Trigger
+						class={buttonVariants({
+							variant: 'outline',
+							class: 'w-full justify-between text-start'
+						})}>All <ChevronDown /></DropdownMenu.Trigger
+					>
+					<DropdownMenu.Content class="flex lg:w-[350px]">
+						<DropdownMenu.Group class="w-full">
+							<DropdownMenu.Item>⭐1 and up</DropdownMenu.Item>
+							<DropdownMenu.Item>⭐2 and up</DropdownMenu.Item>
+							<DropdownMenu.Item>⭐3 and up</DropdownMenu.Item>
+							<DropdownMenu.Item>⭐4 and up</DropdownMenu.Item>
+							<DropdownMenu.Item>⭐5 and up</DropdownMenu.Item>
+						</DropdownMenu.Group>
+					</DropdownMenu.Content>
+				</DropdownMenu.Root> 
 		</aside>
 
 		<!-- Main Content -->
